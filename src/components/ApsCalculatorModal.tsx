@@ -242,7 +242,7 @@ export const ApsCalculatorModal: React.FC<ApsCalculatorModalProps> = ({
               className="btn-3d-navy flex items-center gap-1.5 px-4 py-2 bg-[#002138] hover:bg-[#003152] text-white rounded-xl text-xs font-bold cursor-pointer border border-sky-400/30"
             >
               <Sparkles className="w-3.5 h-3.5 text-[#F1B82D]" />
-              <span>Ask AI: What Can I Study?</span>
+              <span>Ask Advisor: What Can I Study?</span>
             </button>
           </div>
         </div>

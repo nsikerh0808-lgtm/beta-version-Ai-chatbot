@@ -74,7 +74,7 @@ export const FeedbackWidget: React.FC<FeedbackWidgetProps> = ({
     return (
       <div className="flex items-center gap-1.5 text-xs text-emerald-700 bg-emerald-50 px-2.5 py-1.5 rounded-lg border border-emerald-200 mt-2">
         <CheckCircle className="w-3.5 h-3.5 text-emerald-600 flex-shrink-0" />
-        <span>Thank you! Your feedback evolves UNIZULU AI accuracy 🌟</span>
+        <span>Thank you! Your feedback evolves UNIZULU Advisor accuracy 🌟</span>
       </div>
     );
   }

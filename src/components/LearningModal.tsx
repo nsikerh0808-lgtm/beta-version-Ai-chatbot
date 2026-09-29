@@ -119,14 +119,14 @@ export const LearningModal: React.FC<LearningModalProps> = ({
               <div>
                 <div className="flex items-center gap-2">
                   <h3 className="font-black text-lg sm:text-xl text-white tracking-tight">
-                    AI Collective Learning Engine
+                    Collective Learning Engine
                   </h3>
                   <span className="px-2 py-0.5 rounded-full bg-emerald-400/30 text-emerald-300 text-[10px] font-black border border-emerald-400/40">
                     Active
                   </span>
                 </div>
                 <p className="text-xs text-purple-200 mt-0.5 font-medium">
-                  How UNIZULU AI connects questions and learns across all student interactions
+                  How UNIZULU connects questions and learns across all student interactions
                 </p>
               </div>
             </div>
@@ -245,11 +245,11 @@ export const LearningModal: React.FC<LearningModalProps> = ({
               </h4>
             </div>
             <p className="text-xs text-slate-600 leading-relaxed">
-              UNIZULU AI now directly inspects what it answered in the previous message. When you respond with follow-ups like <em>&quot;what about maths lit?&quot;</em>, <em>&quot;which campus is that?&quot;</em>, or <em>&quot;how do I apply?&quot;</em>, the AI links directly to its prior answer without starting over.
+              UNIZULU Advisor now directly inspects what it answered in the previous message. When you respond with follow-ups like <em>&quot;what about maths lit?&quot;</em>, <em>&quot;which campus is that?&quot;</em>, or <em>&quot;how do I apply?&quot;</em>, the Advisor links directly to its prior answer without starting over.
             </p>
           </div>
 
-          {/* Section 3: Teach UNIZULU AI */}
+          {/* Section 3: Teach UNIZULU Advisor */}
           <div className="border-2 border-slate-200 rounded-2xl p-4 space-y-3 bg-slate-50/50">
             <div className="flex items-center gap-2">
               <Users className="w-4 h-4 text-purple-600" />
@@ -281,7 +281,7 @@ export const LearningModal: React.FC<LearningModalProps> = ({
               <textarea 
                 value={teachTip}
                 onChange={(e) => setTeachTip(e.target.value)}
-                placeholder="Verified tip or information to teach the AI..."
+                placeholder="Verified tip or information to contribute to student knowledge..."
                 rows={2}
                 required
                 className="w-full bg-white border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-800 placeholder:text-slate-400 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-200 font-medium"
@@ -293,7 +293,7 @@ export const LearningModal: React.FC<LearningModalProps> = ({
                 className="w-full py-2.5 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white rounded-xl font-black text-xs shadow-[0_3px_0_#4c1d95] active:translate-y-[2px] active:shadow-[0_1px_0_#4c1d95] transition-all flex items-center justify-center gap-2 disabled:opacity-40 cursor-pointer"
               >
                 <Sparkles className="w-3.5 h-3.5 text-pink-300" />
-                <span>{isTeaching ? 'Incorporating into Synapses...' : 'Submit Tip to AI Memory'}</span>
+                <span>{isTeaching ? 'Incorporating into Synapses...' : 'Submit Tip to Knowledge Base'}</span>
                 <Send className="w-3.5 h-3.5" />
               </button>
             </form>

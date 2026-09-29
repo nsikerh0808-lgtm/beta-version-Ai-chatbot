@@ -75,7 +75,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
     {
       id: 'chat' as ActiveTab,
       label: 'Admissions Chat',
-      description: 'AI Advisor & Guidance',
+      description: 'Admissions Advisor & Guidance',
       icon: MessageSquare,
       badge: null,
       colorClasses: {
@@ -126,7 +126,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
     },
     {
       id: 'learning' as ActiveTab,
-      label: 'AI Knowledge & Tips',
+      label: 'Campus Knowledge & Tips',
       description: 'Campus student wisdom',
       icon: Sparkles,
       badge: 'Insights',
@@ -169,7 +169,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
                   UNIZULU ADVISOR
                 </span>
                 <span className="text-[10px] text-sky-400 font-medium">
-                  Academic &amp; Admissions AI
+                  Academic &amp; Admissions Advisor
                 </span>
               </div>
             </div>

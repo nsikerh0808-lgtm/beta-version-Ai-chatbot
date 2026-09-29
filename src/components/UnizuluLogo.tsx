@@ -32,7 +32,7 @@ export const UnizuluLogo: React.FC<UnizuluLogoProps> = ({ className = 'w-10 h-10
           <div className="flex items-center gap-1.5 text-[11px] text-slate-300 font-medium tracking-tight">
             <span>KwaDlangezwa &bull; Richards Bay</span>
             <span className="hidden lg:inline-block text-white/40">|</span>
-            <span className="hidden lg:inline-block text-slate-300">Admissions AI</span>
+            <span className="hidden lg:inline-block text-slate-300">Admissions Portal</span>
           </div>
         </div>
       )}

@@ -782,7 +782,7 @@ What qualification or faculty would you like to explore today?`,
             />
           )}
 
-          {/* 5. AI Knowledge & Learning Insights Panel (Violet / Purple Theme) */}
+          {/* 5. Campus Knowledge & Learning Insights Panel (Violet / Purple Theme) */}
           {activeTab === 'learning' && (
             <LearningPanel
               onAskQuestion={(q) => {

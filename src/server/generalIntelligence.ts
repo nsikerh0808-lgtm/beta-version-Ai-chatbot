@@ -251,8 +251,8 @@ Are you working on Physical Sciences chemistry problems or stoichiometry? Tell m
 
 ### 1. Why Python is Number One:
 • **Readability**: Code looks almost like plain English without cumbersome curly brackets or semicolons.
-• **Versatile**: Used for Artificial Intelligence, Machine Learning, Data Science, Web Backends (Django/FastAPI), and Automation scripts.
-• **Vast Libraries**: PyTorch & TensorFlow (AI), Pandas & NumPy (Data Analysis), Requests (APIs).
+• **Versatile**: Used for Machine Learning, Data Science, Web Backends (Django/FastAPI), and Automation scripts.
+• **Vast Libraries**: PyTorch & TensorFlow (Deep Learning), Pandas & NumPy (Data Analysis), Requests (APIs).
 
 ### 2. A Quick Python Example:
 \`\`\`python
@@ -277,14 +277,14 @@ Would you like help writing a specific Python script or understanding loops, fun
       };
     }
 
-    if (lower.includes('artificial intelligence') || lower.includes('machine learning') || lower.includes('what is ai')) {
+    if (lower.includes('machine learning') || lower.includes('data science') || lower.includes('neural network')) {
       return {
         handled: true,
-        text: `**Artificial Intelligence (AI) & Machine Learning (ML) Explained** 🤖🧠
+        text: `**Machine Learning (ML) & Computational Intelligence Explained** 🤖🧠
 
-**Artificial Intelligence** refers to computer systems engineered to simulate human intelligence—performing tasks such as visual perception, speech recognition, decision-making, and natural language understanding.
+**Computational Intelligence** refers to computer systems engineered to simulate human intelligence—performing tasks such as visual perception, speech recognition, decision-making, and natural language understanding.
 
-### 1. How AI Works:
+### 1. How Computational Systems Work:
 • **Traditional Programming**: Humans write explicit \`if/then\` rules for computers to follow.
 • **Machine Learning (ML)**: Instead of hand-writing rules, we feed massive datasets into mathematical algorithms (neural networks) that discover patterns on their own!
 • **Deep Learning**: Uses multi-layered artificial neural networks inspired by the human brain's interconnected neurons.
@@ -295,7 +295,7 @@ Would you like help writing a specific Python script or understanding loops, fun
 • **Automotive**: Self-driving navigation and sensor fusion.
 • **Language & Education**: Real-time translation, conversational advisors, and personalized tutoring.
 
-Are you interested in how to start studying AI, computer science, or data engineering? Let's talk through it! 🚀💡`
+Are you interested in how to start studying machine learning, computer science, or data engineering? Let's talk through it! 🚀💡`
       };
     }
 
@@ -306,7 +306,7 @@ Are you interested in how to start studying AI, computer science, or data engine
 Coding is the art of giving instructions to computers to solve real-world problems, build applications, or automate tasks.
 
 ### 1. Which Language Should You Learn First?
-• **Python**: Best overall starting language. Clean syntax, supreme in Data Science, AI, and scripting.
+• **Python**: Best overall starting language. Clean syntax, supreme in Data Science, Machine Learning, and scripting.
 • **JavaScript**: The undisputed language of the web. Essential if you want to build websites, mobile apps, or frontend user interfaces.
 • **HTML & CSS**: The building blocks of the web (HTML provides the skeleton; CSS provides the visual styling and colors).
 • **Java or C++**: Great for learning core computer science fundamentals, memory management, and enterprise systems.
@@ -542,13 +542,13 @@ At its core, a computer is an electronic machine designed to receive input, proc
 • **RAM (Random Access Memory)**: High-speed temporary memory where the computer keeps data it is working with right now. When you turn off the computer, RAM clears.
 • **Storage (SSD / Hard Drive)**: Long-term permanent storage where your operating system, games, photos, and files remain safely stored.
 • **Motherboard**: The central circuit board connecting the CPU, RAM, graphics card, and power supply together.
-• **GPU (Graphics Processing Unit)**: Specializes in rendering graphics, 3D games, and accelerating AI neural network computations.
+• **GPU (Graphics Processing Unit)**: Specializes in rendering graphics, 3D games, and accelerating neural network computations.
 
 ### 2. Binary Code: The Language of 1s and 0s:
 Computers are built with microscopic **transistors**—tiny electrical switches.
 • When electricity flows through a transistor, it represents a **1** (ON).
 • When electricity is blocked, it represents a **0** (OFF).
-• By combining billions of these microscopic switches into logic gates (AND, OR, NOT), computers perform everything from streaming 4K video to running complex artificial intelligence! 🖥️✨`
+• By combining billions of these microscopic switches into logic gates (AND, OR, NOT), computers perform everything from streaming 4K video to running complex computational intelligence models! 🖥️✨`
     };
   }
 

@@ -1698,23 +1698,108 @@
       "id": "q-1790677052029-303l",
       "query": "Hello, how does photosynthesis work in 2 sentences?",
       "timestamp": "2026-09-29T10:17:32.029Z"
+    },
+    {
+      "id": "q-1790678092318-1kpq",
+      "query": "What are the detailed admission requirements, minimum APS, and CAO code for Bachelor of Commerce: HR Management and Business Management in the Faculty of Commerce, Administration and Law (CAL) at UNIZULU?",
+      "timestamp": "2026-09-29T10:34:52.318Z"
+    },
+    {
+      "id": "q-1790678106778-pdfz",
+      "query": "What are the detailed admission requirements, minimum APS, and CAO code for Bachelor of Commerce: Economics and Human Resources Management in the Faculty of Commerce, Administration and Law (CAL) at UNIZULU?",
+      "timestamp": "2026-09-29T10:35:06.778Z"
+    },
+    {
+      "id": "q-1790678116420-9xf0",
+      "query": "What are the detailed admission requirements, minimum APS, and CAO code for Bachelor of Arts (Dual Major): Psychology & Sociology in the Faculty of Humanities and Social Sciences (HSS) at UNIZULU?",
+      "timestamp": "2026-09-29T10:35:16.420Z"
+    },
+    {
+      "id": "q-1790678129399-ezhu",
+      "query": "What are the general admission requirements and minimum APS scores for UNIZULU programmes?",
+      "timestamp": "2026-09-29T10:35:29.399Z"
+    },
+    {
+      "id": "q-1790678147589-olyg",
+      "query": "What are the admission requirements for Bachelor of Education (BEd) at UNIZULU?",
+      "timestamp": "2026-09-29T10:35:47.589Z"
+    },
+    {
+      "id": "q-1790678410751-k8op",
+      "query": "What is the APS for LLB?",
+      "timestamp": "2026-09-29T10:40:10.751Z"
+    },
+    {
+      "id": "q-1790678414326-2y19",
+      "query": "How much is the CAO fee?",
+      "timestamp": "2026-09-29T10:40:14.326Z"
+    },
+    {
+      "id": "q-1790678424338-wa0r",
+      "query": "Can I study nursing with 26 APS?",
+      "timestamp": "2026-09-29T10:40:24.338Z"
+    },
+    {
+      "id": "q-1790678535584-4wmh",
+      "query": "What is the APS for LLB?",
+      "timestamp": "2026-09-29T10:42:15.584Z"
+    },
+    {
+      "id": "q-1790678545146-01ts",
+      "query": "What is the APS for LLB?",
+      "timestamp": "2026-09-29T10:42:25.146Z"
+    },
+    {
+      "id": "q-1790678555806-0utv",
+      "query": "Can I study nursing with 26 APS?",
+      "timestamp": "2026-09-29T10:42:35.806Z"
+    },
+    {
+      "id": "q-1790678563168-mzno",
+      "query": "Ngifuna ukufunda umthetho (law), ngidinga amaphuzu amangaki?",
+      "timestamp": "2026-09-29T10:42:43.168Z"
+    },
+    {
+      "id": "q-1790678625488-mrzg",
+      "query": "What is the closing date for UNIZULU CAO applications?",
+      "timestamp": "2026-09-29T10:43:45.488Z"
+    },
+    {
+      "id": "q-1790678633808-4rcn",
+      "query": "Does BCom Accounting accept Mathematical Literacy?",
+      "timestamp": "2026-09-29T10:43:53.808Z"
+    },
+    {
+      "id": "q-1790678642636-axfa",
+      "query": "How do you calculate APS at UNIZULU?",
+      "timestamp": "2026-09-29T10:44:02.636Z"
+    },
+    {
+      "id": "q-1790678673558-tk74",
+      "query": "How do you calculate APS at UNIZULU?",
+      "timestamp": "2026-09-29T10:44:33.558Z"
+    },
+    {
+      "id": "q-1790678681930-fnxy",
+      "query": "Help me write a Python function to check if a number is prime",
+      "timestamp": "2026-09-29T10:44:41.930Z"
     }
   ],
   "evolvedKeywords": {
-    "CAO Application": 142,
-    "APS Calculation": 118,
+    "CAO Application": 144,
+    "APS Calculation": 121,
     "Certified ID & Matric Docs": 95,
-    "Law (LLB)": 94,
+    "Law (LLB)": 96,
     "Computer Science (BSc)": 76,
     "NSFAS & Tuition": 68,
     "KwaDlangezwa Campus Housing": 54,
-    "law": 23,
-    "requirements": 25,
-    "cao": 15,
+    "law": 26,
+    "requirements": 30,
+    "cao": 20,
     "documents": 4,
-    "aps": 19,
-    "education": 5,
-    "nursing": 1,
+    "aps": 30,
+    "education": 6,
+    "nursing": 3,
     "Conversational Small Talk": 172
   },
   "learnedKnowledge": [
@@ -1747,11 +1832,11 @@
       "topic": "Central Applications Office (CAO) Deadlines & Walk-ins",
       "fact": "UNIZULU strictly enforces that no walk-in admissions are permitted at KwaDlangezwa or Richards Bay gates. All applications must be submitted via CAO (www.cao.ac.za).",
       "category": "cao",
-      "confidence": 0.986,
-      "trainingIterations": 48,
+      "confidence": 0.988,
+      "trainingIterations": 50,
       "learnedFrom": "Verified Academic Policy & Student Inquiries",
       "learnedAt": "2026-09-16T20:44:07.826Z",
-      "weight": 1.51,
+      "weight": 1.53,
       "verified": true
     },
     {
@@ -1759,11 +1844,11 @@
       "topic": "Faculty of CAL - Law (LLB) Subject Nuance",
       "fact": "Mathematics Literacy Level 4 (50%) is accepted for LLB when combined with English Level 5 (60%) and an APS of 30+. Pure Mathematics Level 3 (40%) also fulfills the numeracy threshold.",
       "category": "admissions",
-      "confidence": 0.974,
-      "trainingIterations": 51,
+      "confidence": 0.975,
+      "trainingIterations": 52,
       "learnedFrom": "Faculty Rulebook Ingestion & Student Validation",
       "learnedAt": "2026-09-17T20:44:07.826Z",
-      "weight": 1.52,
+      "weight": 1.53,
       "verified": true
     },
     {
@@ -1818,14 +1903,14 @@
   "mlMetrics": {
     "modelEngine": "UNIZULU Neural Knowledge Base v2.4",
     "totalLearnedNodes": 8,
-    "activeSynapses": 1861,
-    "reinforcementIterations": 456,
-    "lastLearningEpoch": "2026-09-29T10:17:36.637Z",
+    "activeSynapses": 1879,
+    "reinforcementIterations": 465,
+    "lastLearningEpoch": "2026-09-29T10:44:45.897Z",
     "learningRate": 0.035,
     "smallTalkInteractions": 324,
     "conversationalMasteryScore": 99.9,
-    "totalInteractionsLogged": 1319,
-    "highVolumeDataPoints": 78
+    "totalInteractionsLogged": 1328,
+    "highVolumeDataPoints": 87
   },
   "conversations": {
     "am": [
@@ -2535,27 +2620,27 @@
       "id": "cui-2",
       "topic": "Commerce & Accounting Mathematics Benchmark",
       "insight": "BCom Accounting requires Pure Mathematics Level 5 (60%). Students with Maths Literacy or Pure Maths Level 4 (50%) are advised towards Diploma in Accounting (ZU-R-DAC at Richards Bay) or B Admin, which have lower numeracy thresholds.",
-      "userInteractionsCount": 156,
+      "userInteractionsCount": 157,
       "category": "admissions",
-      "lastReinforced": "2026-09-21T14:08:27.700Z",
-      "confidence": 0.986
+      "lastReinforced": "2026-09-29T10:43:58.451Z",
+      "confidence": 0.988
     },
     {
       "id": "cui-3",
       "topic": "Faculty Allocation Between Campuses",
       "insight": "Law (LLB), Education (B.Ed), and Sciences are based exclusively at KwaDlangezwa Main Campus. Richards Bay campus focuses on practical business and maritime/transport diplomas (e.g. Tourism, Logistics, Accounting Diploma).",
-      "userInteractionsCount": 150,
+      "userInteractionsCount": 151,
       "category": "campus",
-      "lastReinforced": "2026-09-29T09:59:47.372Z",
+      "lastReinforced": "2026-09-29T10:42:47.364Z",
       "confidence": 0.99
     },
     {
       "id": "cui-4",
       "topic": "Life Orientation in APS Calculation",
       "insight": "Across all 4 faculties at UNIZULU, Life Orientation is strictly EXCLUDED when computing the Admission Point Score (APS). Matriculants frequently make this mistake.",
-      "userInteractionsCount": 131,
+      "userInteractionsCount": 134,
       "category": "admissions",
-      "lastReinforced": "2026-09-24T17:29:13.720Z",
+      "lastReinforced": "2026-09-29T10:44:37.079Z",
       "confidence": 0.99
     },
     {
@@ -2571,10 +2656,10 @@
       "id": "cui-6",
       "topic": "CAO Application Fee & Payment Method",
       "insight": "CAO undergraduate fee is R250 (on-time). Can be paid via EasyPay at Pick n Pay, Shoprite, Checkers, Boxer, or online debit/credit card. Codes start with ZU-M- (Main) or ZU-R- (Richards Bay).",
-      "userInteractionsCount": 98,
+      "userInteractionsCount": 100,
       "category": "cao",
-      "lastReinforced": "2026-09-21T14:08:27.700Z",
-      "confidence": 0.962
+      "lastReinforced": "2026-09-29T10:43:48.290Z",
+      "confidence": 0.966
     }
   ]
 }

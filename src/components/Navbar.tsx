@@ -27,7 +27,7 @@ const TAB_TITLES: Record<ActiveTab, { title: string; subtitle: string; badge?: s
   aps: { title: 'APS Calculator', subtitle: 'NSC Formula (Excl. LO)', badge: 'Gold Theme' },
   documents: { title: 'Required Documents', subtitle: 'SAPS Certified Checklist', badge: 'Emerald Theme' },
   faculties: { title: 'Faculties & Degrees', subtitle: '4 Faculties Explorer', badge: 'Indigo Theme' },
-  learning: { title: 'AI Knowledge & Tips', subtitle: 'Campus Insights', badge: 'Purple Theme' }
+  learning: { title: 'Campus Knowledge & Tips', subtitle: 'Campus Insights', badge: 'Purple Theme' }
 };
 
 export const Navbar: React.FC<NavbarProps> = ({

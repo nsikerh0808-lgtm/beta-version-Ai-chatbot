@@ -201,7 +201,7 @@ export const DocumentChecklistModal: React.FC<DocumentChecklistModalProps> = ({
                           className="text-blue-700 hover:text-blue-900 font-semibold flex items-center gap-1"
                         >
                           <Sparkles className="w-3 h-3" />
-                          <span>Ask AI how to certify</span>
+                          <span>Ask Advisor how to certify</span>
                         </button>
                       </div>
                     </div>

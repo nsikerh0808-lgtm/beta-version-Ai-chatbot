@@ -71,7 +71,7 @@ export const FeedbackStatsModal: React.FC<FeedbackStatsModalProps> = ({
             <div>
               <h3 className="font-bold text-lg">Knowledge Evolution &amp; Accuracy</h3>
               <p className="text-xs text-blue-200">
-                How student feedback continuously trains UNIZULU AI
+                How student feedback continuously improves UNIZULU guidance
               </p>
             </div>
           </div>
@@ -130,7 +130,7 @@ export const FeedbackStatsModal: React.FC<FeedbackStatsModalProps> = ({
           <div className="bg-slate-50 border border-slate-200 p-4 rounded-xl text-xs text-slate-700 space-y-2">
             <div className="font-bold text-slate-900 flex items-center gap-1.5 text-sm">
               <Sparkles className="w-4 h-4 text-[#F1B82D]" />
-              <span>How UNIZULU AI Evolves Over Time</span>
+              <span>How UNIZULU Evolves Over Time</span>
             </div>
             <p className="leading-relaxed">
               Every time a student asks a question and leaves an accuracy rating (thumbs up/down, stars, or corrective notes), the server analyzes recurring keywords and stores high-confidence verification tags. This data directly enriches future Gemini prompt contexts so responses get progressively more accurate, concise, and helpful.

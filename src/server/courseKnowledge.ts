@@ -391,7 +391,7 @@ export function handleCourseAndModuleQuery(
 }
 
 /**
- * Extracts relevant course modules to inject into the AI system instruction
+ * Extracts relevant course modules to inject into the system instruction
  */
 export function getRelevantCoursesForPrompt(userMessage: string): string {
   const lower = userMessage.toLowerCase();

@@ -13,15 +13,7 @@ import {
   Languages, 
   User, 
   ChevronRight,
-  ChevronLeft,
-  Play,
-  Pause,
-  School,
-  Maximize2,
-  X,
-  Camera,
-  CheckCircle2,
-  Images
+  School
 } from 'lucide-react';
 import { UserProfile } from '../types';
 import { UnizuluLogo } from './UnizuluLogo';
@@ -78,32 +70,15 @@ export const WelcomeCoverPage: React.FC<WelcomeCoverPageProps> = ({
   onOpenLanguage,
 }) => {
   const activeLang = getLanguageByCode(selectedLanguage);
-  const [isPhotoLightboxOpen, setIsPhotoLightboxOpen] = useState(false);
   const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [lightboxIndex, setLightboxIndex] = useState(0);
 
-  // Auto-advance slideshow every 5 seconds
+  // Auto-advance slideshow smoothly in background
   useEffect(() => {
-    if (!isPlaying) return;
     const interval = setInterval(() => {
       setCurrentSlideIndex((prev) => (prev + 1) % CAMPUS_SLIDES.length);
-    }, 5000);
+    }, 6000);
     return () => clearInterval(interval);
-  }, [isPlaying]);
-
-  const handlePrevSlide = () => {
-    setCurrentSlideIndex((prev) => (prev - 1 + CAMPUS_SLIDES.length) % CAMPUS_SLIDES.length);
-  };
-
-  const handleNextSlide = () => {
-    setCurrentSlideIndex((prev) => (prev + 1) % CAMPUS_SLIDES.length);
-  };
-
-  const openLightboxAt = (index: number) => {
-    setLightboxIndex(index);
-    setIsPhotoLightboxOpen(true);
-  };
+  }, []);
 
   const quickQuestions = [
     {
@@ -142,8 +117,8 @@ export const WelcomeCoverPage: React.FC<WelcomeCoverPageProps> = ({
         {CAMPUS_SLIDES.map((slide, idx) => (
           <div 
             key={`bg-slide-${slide.id}`}
-            className={`absolute inset-0 bg-cover bg-center filter saturate-125 transition-opacity duration-1000 ease-in-out ${
-              idx === currentSlideIndex ? 'opacity-35' : 'opacity-0'
+            className={`absolute inset-0 bg-cover bg-center transition-opacity duration-1000 ease-in-out ${
+              idx === currentSlideIndex ? 'opacity-85' : 'opacity-0'
             }`}
             style={{
               backgroundImage: `url('${slide.url}')`,
@@ -152,29 +127,18 @@ export const WelcomeCoverPage: React.FC<WelcomeCoverPageProps> = ({
           />
         ))}
       </div>
-      {/* Gradient Mask to ensure crisp contrast and readability */}
-      <div className="fixed inset-0 pointer-events-none z-0 bg-gradient-to-b from-[#001726]/90 via-[#001726]/85 to-[#000a12]/95 backdrop-blur-[2px]" />
+      {/* Neutral partly invisible scrim without color tint so background appears clearly */}
+      <div className="fixed inset-0 pointer-events-none z-0 bg-black/25" />
 
       {/* ============================================================== */}
       {/* 1. TOP PORTAL NAVIGATION BAR                                   */}
       {/* ============================================================== */}
-      <header className="sticky top-0 z-30 bg-[#001726]/90 backdrop-blur-md border-b border-slate-800/90 px-4 sm:px-8 py-3.5 flex items-center justify-between shadow-xl">
+      <header className="sticky top-0 z-30 bg-black/40 backdrop-blur-md border-b border-white/10 px-4 sm:px-8 py-3.5 flex items-center justify-between shadow-xl">
         <div className="flex items-center gap-3">
           <UnizuluLogo className="w-10 h-10 sm:w-11 sm:h-11" showText={true} />
         </div>
 
         <div className="flex items-center gap-2 sm:gap-3">
-          {/* View Real Photo Slideshow Button */}
-          <button
-            type="button"
-            onClick={() => openLightboxAt(currentSlideIndex)}
-            className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-slate-200 hover:text-white border border-white/15 text-xs font-semibold transition-all cursor-pointer shadow-xs"
-            title="View Real UNIZULU Campus Photos in Fullscreen"
-          >
-            <Images className="w-3.5 h-3.5 text-[#F1B82D]" />
-            <span>Campus Photos ({currentSlideIndex + 1}/{CAMPUS_SLIDES.length})</span>
-          </button>
-
           {/* Language Selector Button */}
           <button
             type="button"
@@ -247,11 +211,10 @@ export const WelcomeCoverPage: React.FC<WelcomeCoverPageProps> = ({
               ))}
             </div>
 
-            {/* Premium Film Vignette Overlays */}
-            <div className="absolute inset-0 bg-gradient-to-t from-[#001726] via-[#001726]/60 to-black/40 pointer-events-none" />
-            <div className="absolute inset-0 bg-[#002B49]/30 mix-blend-multiply pointer-events-none" />
+            {/* Neutral Film Vignette Overlays without color wash */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/20 pointer-events-none" />
 
-            {/* Top Floating Badge & Slideshow Controls */}
+            {/* Top Floating Badge */}
             <div className="relative z-10 flex flex-wrap items-center justify-between gap-2">
               <div className="flex flex-wrap items-center gap-2">
                 <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-500/25 text-emerald-200 border border-emerald-400/40 text-xs font-bold uppercase tracking-wider backdrop-blur-md shadow-sm">
@@ -260,76 +223,19 @@ export const WelcomeCoverPage: React.FC<WelcomeCoverPageProps> = ({
                 </span>
                 <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full bg-[#F1B82D]/25 text-[#F1B82D] border border-[#F1B82D]/40 text-xs font-bold backdrop-blur-md shadow-sm">
                   <Award className="w-3.5 h-3.5" />
-                  {CAMPUS_SLIDES[currentSlideIndex].badge}
+                  KwaDlangezwa &amp; Richards Bay
                 </span>
-              </div>
-
-              {/* Full Slideshow Navigation Controls */}
-              <div className="flex items-center gap-1 bg-black/60 backdrop-blur-md border border-white/20 p-1 rounded-2xl shadow-lg">
-                <button
-                  type="button"
-                  onClick={handlePrevSlide}
-                  className="p-1.5 rounded-xl text-white/80 hover:text-white hover:bg-white/20 transition-colors cursor-pointer"
-                  title="Previous Campus Photo"
-                >
-                  <ChevronLeft className="w-4 h-4" />
-                </button>
-                <button
-                  type="button"
-                  onClick={() => setIsPlaying(!isPlaying)}
-                  className="p-1.5 rounded-xl text-white/80 hover:text-white hover:bg-white/20 transition-colors cursor-pointer"
-                  title={isPlaying ? "Pause Slideshow" : "Play Slideshow"}
-                >
-                  {isPlaying ? <Pause className="w-4 h-4 text-amber-300" /> : <Play className="w-4 h-4 text-emerald-300" />}
-                </button>
-                <button
-                  type="button"
-                  onClick={handleNextSlide}
-                  className="p-1.5 rounded-xl text-white/80 hover:text-white hover:bg-white/20 transition-colors cursor-pointer"
-                  title="Next Campus Photo"
-                >
-                  <ChevronRight className="w-4 h-4" />
-                </button>
-                <div className="w-[1px] h-4 bg-white/20 mx-0.5" />
-                <button
-                  type="button"
-                  onClick={() => openLightboxAt(currentSlideIndex)}
-                  className="p-1.5 rounded-xl text-white/80 hover:text-white hover:bg-white/20 transition-colors cursor-pointer"
-                  title="Expand Fullscreen Slideshow"
-                >
-                  <Maximize2 className="w-4 h-4" />
-                </button>
               </div>
             </div>
 
             {/* Bottom Real Building Info & Welcome Copy */}
             <div className="relative z-10 space-y-4 pt-12">
               
-              {/* Authentic Campus Landmark Pill & Slide Navigation Dots */}
+              {/* Authentic Campus Landmark Pill */}
               <div className="flex flex-wrap items-center justify-between gap-2">
                 <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-black/60 backdrop-blur-md border border-white/20 text-xs text-amber-300 font-semibold shadow-md">
                   <MapPin className="w-3.5 h-3.5 text-[#F1B82D] flex-shrink-0" />
                   <span>{CAMPUS_SLIDES[currentSlideIndex].location}</span>
-                </div>
-
-                {/* Interactive Dots & Counter */}
-                <div className="flex items-center gap-1.5 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/20">
-                  <span className="text-[11px] font-bold text-slate-300 mr-1.5">
-                    {currentSlideIndex + 1} / {CAMPUS_SLIDES.length}
-                  </span>
-                  {CAMPUS_SLIDES.map((slide, idx) => (
-                    <button
-                      key={`dot-${slide.id}`}
-                      type="button"
-                      onClick={() => setCurrentSlideIndex(idx)}
-                      className={`h-2 rounded-full transition-all cursor-pointer ${
-                        idx === currentSlideIndex 
-                          ? 'w-6 bg-[#F1B82D]' 
-                          : 'w-2 bg-white/40 hover:bg-white/70'
-                      }`}
-                      title={`View ${slide.title}`}
-                    />
-                  ))}
                 </div>
               </div>
 
@@ -386,7 +292,7 @@ export const WelcomeCoverPage: React.FC<WelcomeCoverPageProps> = ({
           </div>
 
           {/* RIGHT SIDE: Institutional Profile & Interactive Portal Panel (5 Columns) */}
-          <div className="lg:col-span-5 flex flex-col justify-between bg-gradient-to-b from-[#002138]/95 to-[#001726]/95 backdrop-blur-md rounded-3xl p-6 sm:p-7 border border-white/15 shadow-2xl space-y-6">
+          <div className="lg:col-span-5 flex flex-col justify-between bg-black/55 backdrop-blur-xl rounded-3xl p-6 sm:p-7 border border-white/15 shadow-2xl space-y-6">
             
             {/* Header info */}
             <div>
@@ -562,7 +468,7 @@ export const WelcomeCoverPage: React.FC<WelcomeCoverPageProps> = ({
               <Sparkles className="w-5 h-5 text-[#F1B82D]" />
               Instant Advisory &bull; Quick Inquiries
             </h2>
-            <p className="text-xs text-slate-400">Click any card to start a tailored guidance session with our AI advisor</p>
+            <p className="text-xs text-slate-400">Click any card to start a tailored guidance session with our Admissions Advisor</p>
           </div>
           <button
             type="button"
@@ -580,23 +486,23 @@ export const WelcomeCoverPage: React.FC<WelcomeCoverPageProps> = ({
               key={idx}
               type="button"
               onClick={() => onOpenChat(item.prompt)}
-              className="text-left bg-gradient-to-br from-slate-900/90 to-slate-950/90 hover:from-slate-800/95 hover:to-slate-900/95 backdrop-blur-md p-5 rounded-2xl border border-slate-700/80 hover:border-amber-400/50 shadow-md hover:shadow-xl transition-all transform hover:-translate-y-1 cursor-pointer flex flex-col justify-between group"
+              className="text-left bg-black/45 hover:bg-black/65 backdrop-blur-md p-5 rounded-2xl border border-white/15 hover:border-amber-400/50 shadow-md hover:shadow-xl transition-all transform hover:-translate-y-1 cursor-pointer flex flex-col justify-between group"
             >
               <div className="space-y-3">
-                <div className="w-12 h-12 rounded-2xl bg-slate-800/80 border border-slate-700 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
+                <div className="w-12 h-12 rounded-2xl bg-white/10 border border-white/10 flex items-center justify-center text-2xl group-hover:scale-110 transition-transform">
                   {item.icon}
                 </div>
                 <div>
                   <h3 className="text-base font-bold text-white group-hover:text-[#F1B82D] transition-colors">
                     {item.title}
                   </h3>
-                  <p className="text-xs text-slate-400 mt-1 leading-relaxed">
+                  <p className="text-xs text-slate-300 mt-1 leading-relaxed">
                     {item.subtitle}
                   </p>
                 </div>
               </div>
 
-              <div className="mt-4 pt-3 border-t border-slate-700/60 flex items-center justify-between text-xs text-amber-400 font-semibold">
+              <div className="mt-4 pt-3 border-t border-white/10 flex items-center justify-between text-xs text-amber-400 font-semibold">
                 <span>Ask Advisor</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
               </div>
@@ -609,7 +515,7 @@ export const WelcomeCoverPage: React.FC<WelcomeCoverPageProps> = ({
       {/* 4. FACULTY HIGHLIGHTS & 2026 HANDBOOK SHOWCASE                */}
       {/* ============================================================== */}
       <section className="relative z-10 px-4 sm:px-8 py-8 max-w-7xl mx-auto w-full">
-        <div className="bg-gradient-to-br from-[#001f35]/95 to-[#001726]/95 backdrop-blur-md rounded-3xl p-6 sm:p-8 border border-white/10 shadow-xl space-y-6">
+        <div className="bg-black/55 backdrop-blur-xl rounded-3xl p-6 sm:p-8 border border-white/15 shadow-xl space-y-6">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 border-b border-slate-700/80 pb-5">
             <div>
               <div className="flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-amber-400">
@@ -727,7 +633,7 @@ export const WelcomeCoverPage: React.FC<WelcomeCoverPageProps> = ({
       {/* ============================================================== */}
       {/* 5. FOOTER & INSTITUTIONAL DISCLAIMER                           */}
       {/* ============================================================== */}
-      <footer className="mt-auto relative z-10 border-t border-slate-800/80 bg-[#00121e]/90 backdrop-blur-md px-4 sm:px-8 py-6 text-xs text-slate-400">
+      <footer className="mt-auto relative z-10 border-t border-white/10 bg-black/50 backdrop-blur-md px-4 sm:px-8 py-6 text-xs text-slate-400">
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-full bg-white/10 p-1 flex items-center justify-center">
@@ -766,116 +672,6 @@ export const WelcomeCoverPage: React.FC<WelcomeCoverPageProps> = ({
           </div>
         </div>
       </footer>
-
-      {/* ============================================================== */}
-      {/* 6. REAL CAMPUS PHOTO LIGHTBOX MODAL WITH FULL SLIDESHOW         */}
-      {/* ============================================================== */}
-      {isPhotoLightboxOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/90 backdrop-blur-lg animate-in fade-in">
-          <div className="relative max-w-5xl w-full bg-slate-900 rounded-3xl overflow-hidden border border-white/20 shadow-2xl flex flex-col max-h-[95vh]">
-            <div className="p-4 bg-[#001726] border-b border-white/10 flex items-center justify-between">
-              <div className="flex items-center gap-2.5 min-w-0 pr-2">
-                <MapPin className="w-4 h-4 text-[#F1B82D] flex-shrink-0" />
-                <span className="font-bold text-white text-sm truncate">
-                  {CAMPUS_SLIDES[lightboxIndex].title} &bull; {CAMPUS_SLIDES[lightboxIndex].location}
-                </span>
-              </div>
-              <button
-                type="button"
-                onClick={() => setIsPhotoLightboxOpen(false)}
-                className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-white/10 cursor-pointer flex-shrink-0"
-              >
-                <X className="w-5 h-5" />
-              </button>
-            </div>
-
-            {/* Main Lightbox Image View with Previous/Next Arrows */}
-            <div className="relative p-2 sm:p-4 bg-black flex items-center justify-center overflow-hidden min-h-[300px] sm:min-h-[460px]">
-              <img
-                src={CAMPUS_SLIDES[lightboxIndex].url}
-                alt={CAMPUS_SLIDES[lightboxIndex].title}
-                className="w-full max-h-[60vh] object-contain rounded-xl shadow-lg transition-all duration-300"
-              />
-
-              {/* Prev button */}
-              <button
-                type="button"
-                onClick={() => setLightboxIndex((prev) => (prev - 1 + CAMPUS_SLIDES.length) % CAMPUS_SLIDES.length)}
-                className="absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/60 hover:bg-black/90 text-white border border-white/30 backdrop-blur-md transition-all cursor-pointer shadow-lg hover:scale-110"
-                title="Previous Photo"
-              >
-                <ChevronLeft className="w-6 h-6" />
-              </button>
-
-              {/* Next button */}
-              <button
-                type="button"
-                onClick={() => setLightboxIndex((prev) => (prev + 1) % CAMPUS_SLIDES.length)}
-                className="absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-black/60 hover:bg-black/90 text-white border border-white/30 backdrop-blur-md transition-all cursor-pointer shadow-lg hover:scale-110"
-                title="Next Photo"
-              >
-                <ChevronRight className="w-6 h-6" />
-              </button>
-            </div>
-
-            {/* Thumbnail Navigation Bar */}
-            <div className="px-4 py-3 bg-slate-950 border-t border-white/10 flex items-center justify-center gap-3 overflow-x-auto">
-              {CAMPUS_SLIDES.map((slide, idx) => (
-                <button
-                  key={`thumb-${slide.id}`}
-                  type="button"
-                  onClick={() => setLightboxIndex(idx)}
-                  className={`flex items-center gap-2 p-1.5 rounded-xl border transition-all cursor-pointer ${
-                    idx === lightboxIndex 
-                      ? 'border-[#F1B82D] bg-[#F1B82D]/15' 
-                      : 'border-white/10 hover:border-white/30 bg-white/5 opacity-70 hover:opacity-100'
-                  }`}
-                >
-                  <img
-                    src={slide.url}
-                    alt={slide.title}
-                    className="w-14 h-10 object-cover rounded-lg"
-                  />
-                  <div className="text-left text-[11px] pr-2 hidden sm:block">
-                    <div className="font-bold text-white truncate max-w-[130px]">{slide.badge}</div>
-                    <div className="text-slate-400 text-[10px]">Photo {idx + 1} of {CAMPUS_SLIDES.length}</div>
-                  </div>
-                </button>
-              ))}
-            </div>
-
-            {/* Footer Actions */}
-            <div className="p-4 bg-slate-900 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs text-slate-300">
-              <div className="flex items-center gap-2">
-                <CheckCircle2 className="w-4 h-4 text-emerald-400 flex-shrink-0" />
-                <span>{CAMPUS_SLIDES[lightboxIndex].subtitle}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <button
-                  type="button"
-                  onClick={() => {
-                    setCurrentSlideIndex(lightboxIndex);
-                    setIsPhotoLightboxOpen(false);
-                  }}
-                  className="px-3.5 py-2 bg-slate-800 hover:bg-slate-700 text-white font-semibold rounded-xl border border-slate-700 transition-colors cursor-pointer"
-                >
-                  Set as Hero Slide
-                </button>
-                <button
-                  type="button"
-                  onClick={() => {
-                    setIsPhotoLightboxOpen(false);
-                    onOpenChat(`Tell me more about the UNIZULU campus facilities at ${CAMPUS_SLIDES[lightboxIndex].location}`);
-                  }}
-                  className="px-4 py-2 bg-[#F1B82D] hover:bg-amber-400 text-[#002138] font-bold rounded-xl transition-colors cursor-pointer"
-                >
-                  Ask About This Campus
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
 
     </div>
   );

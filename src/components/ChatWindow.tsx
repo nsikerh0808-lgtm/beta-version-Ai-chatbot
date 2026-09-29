@@ -121,7 +121,7 @@ export const ChatWindow: React.FC<ChatWindowProps> = ({
               </div>
               <span className="bg-gradient-to-r from-blue-700 to-indigo-700 bg-clip-text text-transparent font-bold">UNIZULU</span>
               <span className="text-slate-300">•</span>
-              <span className="text-slate-600 font-medium">Academic AI Advisor</span>
+              <span className="text-slate-600 font-medium">Academic Admissions Advisor</span>
             </div>
 
             {/* Expressive Gemini-Style Headline */}

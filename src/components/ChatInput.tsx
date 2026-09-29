@@ -111,7 +111,7 @@ export const ChatInput: React.FC<ChatInputProps> = ({
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
             </span>
             <span className="text-slate-600 font-medium">
-              UNIZULU Academic AI Companion
+              UNIZULU Academic Companion
             </span>
             <span className="text-slate-300">•</span>
             <span className="text-slate-500 font-normal">Active Continuous Learning</span>
