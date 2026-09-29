@@ -111,7 +111,7 @@ export const DocumentChecklistPanel: React.FC<DocumentChecklistPanelProps> = ({
                 UNIZULU Document Verification Checklist
               </h1>
               <p className="text-xs text-emerald-800 font-medium">
-                SAPS &amp; Commissioner of Oaths Certification Guidelines for 2025/2026 Admissions
+                SAPS &amp; Commissioner of Oaths Certification Guidelines for 2026 Admissions
               </p>
             </div>
           </div>

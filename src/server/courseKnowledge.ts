@@ -1,6 +1,6 @@
-import { HANDBOOK_MODULES, CourseModule } from '../data/handbookModules';
-import { FCAL_MODULE_COURSES } from '../data/fcalModules';
-import { UNIZULU_FACULTIES } from '../data/unizuluKnowledge';
+import { HANDBOOK_MODULES, type CourseModule } from '../data/handbookModules.ts';
+import { FCAL_MODULE_COURSES } from '../data/fcalModules.ts';
+import { UNIZULU_FACULTIES } from '../data/unizuluKnowledge.ts';
 
 export interface CourseQueryMatchResult {
   handled: boolean;

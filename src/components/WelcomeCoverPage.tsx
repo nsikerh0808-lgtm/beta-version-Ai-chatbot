@@ -31,6 +31,38 @@ export interface CampusSlide {
 
 export const CAMPUS_SLIDES: CampusSlide[] = [
   {
+    id: 'unizulu-glass-library',
+    url: '/campus/lib3.jpg',
+    title: 'UNIZULU Central Library & Glass Administration Complex',
+    subtitle: 'Flagship Academic Research Centre, Study Commons & Faculty Administration',
+    location: 'KwaDlangezwa Main Campus • Central Library Quad',
+    badge: 'Central Library'
+  },
+  {
+    id: 'richards-bay-campus',
+    url: '/campus/rbay.jpg',
+    title: 'UNIZULU Richards Bay Campus Academic Complex',
+    subtitle: 'Modern Coastal Urban Campus • Coastal Engineering & Business Hub',
+    location: 'Richards Bay Urban Campus • Maritime Precinct',
+    badge: 'Richards Bay Campus'
+  },
+  {
+    id: 'library-walkway',
+    url: '/campus/lib1.jpg',
+    title: 'KwaDlangezwa Campus Library Entrance & Palm Walkway',
+    subtitle: 'Iconic Academic Palm Boulevard Leading to Student Study Halls',
+    location: 'KwaDlangezwa Main Campus • Library Walkway',
+    badge: 'Library Walkway'
+  },
+  {
+    id: 'library-precinct',
+    url: '/campus/lib2.jpg',
+    title: 'UNIZULU Academic Knowledge & Library Precinct',
+    subtitle: 'Student Commons, Archives, Learning Resources & Lecture Theatres',
+    location: 'KwaDlangezwa Main Campus • Academic Precinct',
+    badge: 'Academic Precinct'
+  },
+  {
     id: 'dlangezwa-entrance',
     url: '/campus/slide1.jpg',
     title: 'KwaDlangezwa Campus Main Grounds & Walkways',
@@ -326,7 +358,7 @@ export const WelcomeCoverPage: React.FC<WelcomeCoverPageProps> = ({
                       <Calendar className="w-3.5 h-3.5" />
                       Applications Open
                     </span>
-                    <span className="text-white font-extrabold text-sm block mt-0.5">1 March 2025</span>
+                    <span className="text-white font-extrabold text-sm block mt-0.5">1 March 2026</span>
                     <span className="text-[10px] text-emerald-300/80">Via CAO Portal</span>
                   </div>
 
@@ -335,7 +367,7 @@ export const WelcomeCoverPage: React.FC<WelcomeCoverPageProps> = ({
                       <Calendar className="w-3.5 h-3.5" />
                       Closing Deadline
                     </span>
-                    <span className="text-white font-extrabold text-sm block mt-0.5">31 October 2025</span>
+                    <span className="text-white font-extrabold text-sm block mt-0.5">31 October 2026</span>
                     <span className="text-[10px] text-amber-300/80">Strict on-time cut-off</span>
                   </div>
                 </div>

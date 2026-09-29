@@ -1,6 +1,6 @@
-import { UNIZULU_FACULTIES, FacultyDetail, FacultyDegree } from '../data/unizuluKnowledge';
-import { HANDBOOK_MODULES, CourseModule } from '../data/handbookModules';
-import { formatSingleCourseDetails } from './courseKnowledge';
+import { UNIZULU_FACULTIES, type FacultyDetail, type FacultyDegree } from '../data/unizuluKnowledge.ts';
+import { HANDBOOK_MODULES, type CourseModule } from '../data/handbookModules.ts';
+import { formatSingleCourseDetails } from './courseKnowledge.ts';
 
 export interface TargetedQueryResult {
   handled: boolean;
@@ -19,100 +19,172 @@ function normalize(str: string): string {
  * 1. Resolves Quick Suggestion Prompts from the Cover Page
  */
 export function resolveCoverPageQuickSuggestion(lowerMsg: string): TargetedQueryResult | null {
-  const trimmed = lowerMsg.trim().toLowerCase();
-
-  // Only trigger on exact or near-exact prompt clicks, never on conversational questions
+  // Quick Prompt 1: What undergraduate qualifications can I study across all faculties?
   if (
-    trimmed === 'what undergraduate qualifications can i study at the university of zululand across all faculties?' ||
-    trimmed === 'what undergraduate qualifications can i study across all faculties?' ||
-    trimmed === 'what can i study at unizulu?' ||
-    trimmed === 'what undergraduate qualifications can i study?'
+    lowerMsg.includes('what undergraduate qualifications can i study') ||
+    (lowerMsg.includes('what can i study') && lowerMsg.includes('unizulu')) ||
+    (lowerMsg.includes('qualifications') && lowerMsg.includes('all faculties'))
   ) {
     return {
       handled: true,
       source: 'UNIZULU 2026 Academic Catalog',
       text: `### 🎓 Undergraduate Qualifications at the University of Zululand (UNIZULU) 🏛️✨
 
-UNIZULU offers accredited undergraduate qualifications across **4 academic faculties**:
+UNIZULU offers a wide range of accredited undergraduate programmes across **4 academic faculties**, structured to prepare you for impactful careers in industry, government, and society:
 
-• ⚖️ **Faculty of Commerce, Administration and Law (FCAL)**:
-  - Bachelor of Laws (LLB) — 4 Years • Minimum APS: 30
-  - BCom Accounting Science (SAICA) — 4 Years • Minimum APS: 28 (Pure Maths required)
-  - BCom (General / Business Management / Economics) — 3 Years • Minimum APS: 28
-  - Bachelor of Public Administration (BAdmin) — 3 Years • Minimum APS: 24
-  - Diplomas: Management Studies, Public Relations, Transport & Logistics (Richards Bay Campus, APS 22)
+---
 
-• 🔬 **Faculty of Science, Agriculture and Engineering (SAE)**:
-  - BSc Computer Science — Minimum APS: 28–34 (Pure Maths required)
-  - Bachelor of Nursing Science — 4 Years • Minimum APS: 30
-  - BSc Agriculture (Agronomy, Animal Science) — Minimum APS: 28
-  - BSc Hydrology, Biochemistry, Microbiology, Physics, Chemistry — Minimum APS: 28
+#### ⚖️ 1. Faculty of Commerce, Administration and Law (FCAL)
+*Campuses: KwaDlangezwa & Richards Bay*
+• **Flagship Degrees**: 
+  - **Bachelor of Laws (LLB)** (4 Years, APS 30)
+  - **BCom in Accounting Science** (SAICA Accredited, APS 28)
+  - **BCom Degrees**: Accounting, Business Management, Economics, Banking, Management Information Systems (APS 28)
+  - **Bachelor of Public Administration (BAdmin)** (APS 24)
+• **Career-Focused Diplomas**: Diploma in Management Studies, Public Relations, and Logistics Management (Richards Bay Campus).
 
-• 📚 **Faculty of Education (EDU)**:
-  - BEd in Foundation Phase Teaching (Grades R–3) — Minimum APS: 26
-  - BEd in Intermediate Phase Teaching (Grades 4–7) — Minimum APS: 26
-  - BEd in Senior Phase & FET Teaching (Grades 8–12) — Minimum APS: 26
+---
 
-• 🌍 **Faculty of Humanities and Social Sciences (HSS)**:
-  - Bachelor of Social Work (BSW) — 4 Years • Minimum APS: 28–30
-  - BA in Psychology, Communication Science, Development Studies, Criminology — Minimum APS: 26
+#### 🔬 2. Faculty of Science, Agriculture and Engineering (SAE)
+*Campuses: KwaDlangezwa & Richards Bay*
+• **Science & Technology**: BSc in Computer Science, Biochemistry, Microbiology, Hydrology, Physics, Chemistry, and Mathematics (APS 28–30).
+• **Agriculture**: BSc in Agriculture (Agronomy, Animal Science, Agribusiness) (APS 28).
+• **Engineering**: Diplomas and Bachelor of Engineering Technology programmes.
+• **Health Sciences**: Bachelor of Nursing Science (APS 30).
 
-💡 *Ask me about any specific qualification for exact entry requirements, APS, or CAO codes!*`
+---
+
+#### 🌍 3. Faculty of Humanities and Social Sciences (HSS)
+*Campus: KwaDlangezwa*
+• **Social Work**: **Bachelor of Social Work (BSW)** (4 Years, SACSSP Accredited, APS 28).
+• **Humanities & Arts**: BA in Psychology, Communication Science, Development Studies, English, isiZulu, Sociology, History, and Performing Arts (APS 26–28).
+
+---
+
+#### 📚 4. Faculty of Education (EDU)
+*Campus: KwaDlangezwa*
+• **Teaching Qualifications**: **Bachelor of Education (BEd)** across 3 phases:
+  - BEd in Foundation Phase Teaching (Grades R–3) (APS 26)
+  - BEd in Intermediate Phase Teaching (Grades 4–7) (APS 26)
+  - BEd in Senior Phase & FET Teaching (Grades 8–12) (APS 26)
+
+---
+
+💡 *Which field or qualification would you like to explore further? You can ask me for the exact APS requirements, CAO codes, or subjects for any specific degree!*`
     };
   }
 
   // Quick Prompt 2: General admission requirements and minimum APS scores
   if (
-    trimmed === 'what are the general admission requirements and minimum aps scores for unizulu programmes?' ||
-    trimmed === 'general admission requirements and minimum aps scores'
+    lowerMsg.includes('general admission requirements and minimum aps scores') ||
+    (lowerMsg.includes('admission requirements') && lowerMsg.includes('minimum aps') && lowerMsg.includes('general')) ||
+    lowerMsg.includes('check requirements')
   ) {
     return {
       handled: true,
       source: 'UNIZULU Admissions Policy 2026',
-      text: `### 📋 UNIZULU General Admission Benchmarks & APS Formula 🎯✨
+      text: `### 📋 UNIZULU General Admission Requirements & APS Benchmarks 🎯✨
 
-Admission into UNIZULU requires a National Senior Certificate (NSC) with the relevant pass endorsement:
+Admission into the University of Zululand requires a National Senior Certificate (NSC) or equivalent with the relevant qualification endorsement:
 
-• **Bachelor's Degrees** (e.g. LLB, BCom, BSc, BEd, BSW):
-  - **Endorsement**: NSC Bachelor's degree pass.
-  - **Minimum APS**: Typically **26 to 32 points** (excluding Life Orientation).
-  - **English**: Level 4 (50%+) minimum.
+---
 
-• **National Diplomas** (e.g. Management, Public Relations, Transport):
-  - **Endorsement**: NSC Diploma pass.
-  - **Minimum APS**: Minimum **22 to 26 points**.
-  - **English**: Level 3 (40%) or Level 4 (50%).
+#### 1. General Admission Benchmarks by Qualification Type:
+• **Bachelor's Degrees (e.g. LLB, BCom, BSc, BEd, BSW)**:
+  - **Endorsement**: NSC with Bachelor's Degree pass.
+  - **APS Score Range**: Typically **26 to 32 points** (depending on programme competition).
+  - **English Requirement**: English Home Language or First Additional Language (FAL) at **Level 4 (50–59%)** minimum.
+  - **Mathematics**: Pure Mathematics Level 4 (50%+) for Science/Engineering/Accounting; or Maths Lit Level 4–6 for Law, Humanities, and Education.
+
+• **National Diplomas (e.g. Management, Public Relations, Transport)**:
+  - **Endorsement**: NSC with Diploma pass.
+  - **APS Score Range**: Minimum **22 to 26 points**.
+  - **English Requirement**: English Level 3 (40%) or Level 4 (50%).
 
 • **Higher Certificates**:
-  - **Endorsement**: NSC Higher Certificate pass.
-  - **Minimum APS**: Minimum **19 to 22 points**.
+  - **Endorsement**: NSC with Higher Certificate pass.
+  - **APS Score Range**: Minimum **19 to 22 points**.
 
-⚠️ **Critical APS Rule**: UNIZULU calculates APS strictly using your **top 6 subjects, excluding Life Orientation (LO = 0 points)**. Total score is out of 42.`
+---
+
+#### 2. Key Subject Notes:
+• **Life Orientation (LO)** is generally excluded when calculating the APS for admission ranking at UNIZULU.
+• Meeting the minimum requirements ensures your application is considered, but high-demand programmes (such as Law, Nursing, and Accounting Science) select applicants based on competitive ranking.
+
+💡 *Would you like to calculate your exact APS score or check requirements for a specific degree?*`
     };
   }
 
-  // Quick Prompt 3: Apply via CAO step by step
+  // Quick Prompt 3: Course Recommendation based on subject performance and interests
   if (
-    trimmed === 'how do i apply to the university of zululand through the central applications office (cao) step by step?' ||
-    trimmed === 'how do i apply to the university of zululand through the central applications office?' ||
-    trimmed === 'apply to unizulu via cao step by step'
+    lowerMsg.includes('recommend degrees and diplomas at unizulu based on my subject performance') ||
+    (lowerMsg.includes('recommend') && (lowerMsg.includes('performance') || lowerMsg.includes('marks') || lowerMsg.includes('interest')))
+  ) {
+    return {
+      handled: true,
+      source: 'UNIZULU Academic Advising Framework',
+      text: `### 🎯 Personalized Academic Programme Recommendation 💡✨
+
+I would love to help you find the best undergraduate programmes tailored to your academic strengths and future career ambitions!
+
+To give you the most accurate recommendations, please tell me:
+
+1. **What subjects are you taking in Grade 11 or Matric?**
+2. **Did you take Pure Mathematics or Mathematical Literacy?** (And what is your approximate percentage or level?)
+3. **What is your estimated APS score?** (If you haven't calculated it yet, you can use our **APS Calculator** tab on the left!)
+4. **What career fields interest you most?**
+   - ⚖️ Legal, Governance & Public Policy (e.g. Law, Public Administration)
+   - 💼 Commerce, Business & Finance (e.g. Accounting, Economics, Banking, Management)
+   - 💻 Technology, Science & Agriculture (e.g. Computer Science, Hydrology, Agronomy)
+   - 🩺 Healthcare & Community Support (e.g. Nursing, Social Work, Psychology)
+   - 🍎 Education & Teaching (e.g. Foundation, Intermediate, or High School Teaching)
+
+Reply with your subjects or interests, and I will recommend the top UNIZULU degrees that match your profile!`
+    };
+  }
+
+  // Quick Prompt 4: Apply via CAO step by step
+  if (
+    lowerMsg.includes('apply to the university of zululand through the central applications office') ||
+    lowerMsg.includes('cao step by step') ||
+    (lowerMsg.includes('apply') && lowerMsg.includes('cao') && lowerMsg.includes('how'))
   ) {
     return {
       handled: true,
       source: 'Central Applications Office (CAO) & UNIZULU Admissions',
       text: `### 📝 Step-by-Step Guide: Applying to UNIZULU via CAO 🌐✨
 
-All prospective undergraduate students apply through the **Central Applications Office (CAO)**:
+All prospective undergraduate students must apply through the **Central Applications Office (CAO)**. Follow these 5 clear steps:
 
-1. **Visit the CAO Portal**: Go to **[www.cao.ac.za](https://www.cao.ac.za)** and click **"Apply Now"**.
-2. **Personal & Results Details**: Enter your SA ID (or Passport) and Grade 11 final report or Matric statement.
-3. **Select UNIZULU Programmes**: Use official **'ZU-' codes**:
-   - \`ZU-M-...\` = **KwaDlangezwa Main Campus** (e.g. \`ZU-M-LLB\` for Law).
-   - \`ZU-R-...\` = **Richards Bay Campus** (e.g. \`ZU-R-NDM\` for Management Diploma).
-4. **Pay Application Fee**: **R250** (on-time SA citizen) or **R470** (late) via card or EasyPay outlet.
-5. **Upload Certified Documents**: Upload certified ID, Grade 11/12 report, and proof of payment on CAO.
+---
 
-⚠️ **Note**: UNIZULU strictly enforces a **NO WALK-INS** policy. All applications must be submitted online through CAO.`
+#### **Step 1: Visit the CAO Portal**
+• Go to the official website: **[www.cao.ac.za](https://www.cao.ac.za)**.
+• Click on **"Apply Now"** to begin a new application.
+
+#### **Step 2: Enter Your Personal & Academic Information**
+• Enter your South African ID Number (or Passport Number for international applicants).
+• Provide your Grade 11 final marks (if currently in Matric) or your National Senior Certificate (NSC) results (if already completed).
+
+#### **Step 3: Select Your UNIZULU Programme Choices**
+• You can choose up to **6 study choices** on your CAO form across universities in KwaZulu-Natal.
+• Look for UNIZULU programmes using the official **'ZU-' codes**:
+  - \`ZU-M-...\` = **KwaDlangezwa Main Campus** (e.g., \`ZU-M-LLB\` for Bachelor of Laws).
+  - \`ZU-R-...\` = **Richards Bay Campus** (e.g., \`ZU-R-NDM\` for Diploma in Management).
+
+#### **Step 4: Pay the CAO Application Fee**
+• **South African Citizens**: **R250** (On-time application fee).
+• Payment can be made online via debit/credit card, or at EasyPay outlets (Pick n Pay, Checkers, Shoprite) using your CAO payment slip.
+
+#### **Step 5: Upload Supporting Documents**
+• Certified copy of your **Identity Document (ID)**.
+• Certified copy of your **Grade 11 final report** or **Matric Statement of Results**.
+• Proof of payment (if not paid online).
+• Upload these on the CAO website under **"Upload My Documents"**.
+
+---
+
+💡 *Need the specific CAO code for a particular qualification? Just ask me!*`
     };
   }
 
@@ -120,42 +192,21 @@ All prospective undergraduate students apply through the **Central Applications 
 }
 
 /**
- * 2. Resolves Faculty-Level Questions (e.g. "Tell me about FCAL", "Overview of the Faculty of Education", etc.)
+ * 2. Resolves Faculty-Level Questions (e.g. "Tell me about FCAL", "Faculty of Education", etc.)
  */
 export function resolveFacultyOverviewQuery(lowerMsg: string): TargetedQueryResult | null {
-  // If asking a specific question, do NOT treat as static faculty overview
-  const isQuestion = (
-    lowerMsg.includes('?') ||
-    lowerMsg.includes('bachelor') ||
-    lowerMsg.includes('diploma') ||
-    lowerMsg.includes('llb') ||
-    lowerMsg.includes('aps') ||
-    lowerMsg.includes('points') ||
-    lowerMsg.includes('score') ||
-    lowerMsg.includes('cao code') ||
-    lowerMsg.includes('minimum aps') ||
-    lowerMsg.includes('requirements for') ||
-    lowerMsg.includes('can i') ||
-    lowerMsg.includes('maths')
+  // Only trigger if asking specifically about a faculty in general, NOT about a specific degree or module code
+  const isFacultyQuery = (
+    lowerMsg.includes('faculty of') ||
+    lowerMsg.includes('tell me about the faculty') ||
+    lowerMsg.includes('overview of the faculty') ||
+    (lowerMsg.includes('faculty') && (lowerMsg.includes('commerce') || lowerMsg.includes('science') || lowerMsg.includes('education') || lowerMsg.includes('humanities') || lowerMsg.includes('fcal') || lowerMsg.includes('sae') || lowerMsg.includes('hss')))
   );
 
-  if (isQuestion) {
+  // If asking about a specific degree, do NOT treat as faculty overview
+  if (lowerMsg.includes('bachelor of') || lowerMsg.includes('llb') || lowerMsg.includes('cao code') || lowerMsg.includes('minimum aps for') || lowerMsg.includes('requirements for')) {
     return null;
   }
-
-  const isFacultyQuery = (
-    lowerMsg.startsWith('tell me about the faculty') ||
-    lowerMsg.startsWith('overview of the faculty') ||
-    lowerMsg.startsWith('tell me about faculty') ||
-    lowerMsg === 'faculty of commerce, administration and law' ||
-    lowerMsg === 'faculty of science, agriculture and engineering' ||
-    lowerMsg === 'faculty of education' ||
-    lowerMsg === 'faculty of humanities and social sciences' ||
-    lowerMsg === 'fcal' ||
-    lowerMsg === 'sae' ||
-    lowerMsg === 'hss' ||
-    lowerMsg === 'fedu'
-  );
 
   if (!isFacultyQuery) return null;
 
@@ -275,53 +326,23 @@ export function resolveFacultyOverviewQuery(lowerMsg: string): TargetedQueryResu
 }
 
 /**
- * 3. Resolves Specific Degree / Programme Queries (e.g. triggered from clicking handbook cards)
+ * 3. Resolves Specific Degree / Programme Queries (e.g. triggered from Faculties & Degrees tab)
  */
 export function resolveSpecificDegreeQuery(userMessage: string): TargetedQueryResult | null {
   const lowerMsg = userMessage.toLowerCase().trim();
 
-  // If this is a specific question (asks about APS, points, eligibility, requirements, maths, dates, campus, etc.),
-  // DO NOT hijack with a static full-catalog dump! Let the AI model answer that particular question directly.
-  const isQuestionOrSpecificAspect = (
-    lowerMsg.includes('?') ||
-    lowerMsg.startsWith('what') ||
-    lowerMsg.startsWith('can i') ||
-    lowerMsg.startsWith('do i') ||
-    lowerMsg.startsWith('how') ||
-    lowerMsg.startsWith('where') ||
-    lowerMsg.startsWith('when') ||
-    lowerMsg.startsWith('why') ||
-    lowerMsg.startsWith('is ') ||
-    lowerMsg.startsWith('does ') ||
-    lowerMsg.includes('aps') ||
-    lowerMsg.includes('score') ||
-    lowerMsg.includes('points') ||
-    lowerMsg.includes('qualify') ||
-    lowerMsg.includes('eligible') ||
-    lowerMsg.includes('maths lit') ||
-    lowerMsg.includes('mathematical literacy') ||
-    lowerMsg.includes('pure maths') ||
-    lowerMsg.includes('closing date') ||
-    lowerMsg.includes('deadline') ||
-    lowerMsg.includes('fee') ||
-    lowerMsg.includes('cost') ||
-    lowerMsg.includes('career') ||
-    lowerMsg.includes('job') ||
-    lowerMsg.includes('fail') ||
-    lowerMsg.includes('pass')
-  );
-
-  if (isQuestionOrSpecificAspect) {
-    return null;
-  }
-
-  // Only trigger static degree catalog cards for explicit brochure requests or handbook button clicks
-  const isExplicitBrochureRequest = (
-    lowerMsg.startsWith('tell me about the degree') ||
-    lowerMsg.startsWith('view degree profile') ||
-    lowerMsg.startsWith('degree profile:') ||
-    lowerMsg.startsWith('tell me about bachelor') ||
-    lowerMsg.startsWith('tell me about diploma')
+  // Check if user is asking for admission requirements / APS / CAO of a specific degree
+  const isDegreeQuery = (
+    lowerMsg.includes('what are the detailed admission requirements') ||
+    lowerMsg.includes('admission requirements') ||
+    lowerMsg.includes('minimum aps') ||
+    lowerMsg.includes('cao code') ||
+    lowerMsg.includes('requirements for') ||
+    lowerMsg.includes('tell me about bachelor') ||
+    lowerMsg.includes('tell me about diploma') ||
+    lowerMsg.includes('tell me about the degree') ||
+    lowerMsg.includes('tell me about the llb') ||
+    lowerMsg.includes('how to get into')
   );
 
   // Flatten all degrees with their parent faculty
@@ -332,12 +353,13 @@ export function resolveSpecificDegreeQuery(userMessage: string): TargetedQueryRe
     });
   });
 
-  // 1. Exact title match (e.g. button click "Bachelor of Laws (LLB)")
+  // 1. Exact or near-exact title match
   for (const { deg, faculty } of allDegrees) {
     const degTitleLower = deg.title.toLowerCase();
+    // Clean brackets
     const cleanTitle = degTitleLower.replace(/\(.*?\)/g, '').trim();
 
-    if (lowerMsg === degTitleLower || lowerMsg === cleanTitle || (isExplicitBrochureRequest && lowerMsg.includes(cleanTitle))) {
+    if (lowerMsg.includes(degTitleLower) || lowerMsg.includes(cleanTitle)) {
       return {
         handled: true,
         source: `${faculty.name} Official 2026 Handbook`,
@@ -346,10 +368,35 @@ export function resolveSpecificDegreeQuery(userMessage: string): TargetedQueryRe
     }
   }
 
-  // 2. Explicit handbook brochure queries
-  if (lowerMsg === 'tell me about llb' || lowerMsg === 'tell me about bachelor of laws' || lowerMsg === 'view llb profile') {
+  // 2. Acronym / key term matching
+  if (lowerMsg.includes('llb') || lowerMsg.includes('bachelor of laws') || lowerMsg.includes('law degree')) {
     const llb = allDegrees.find(d => d.deg.title.includes('Bachelor of Laws (LLB)'));
     if (llb) return { handled: true, source: 'Faculty of Commerce, Administration and Law 2026', text: formatSpecificDegreeResponse(llb.deg, llb.faculty) };
+  }
+
+  if (lowerMsg.includes('accounting science') || lowerMsg.includes('saica') || lowerMsg.includes('ca(sa)')) {
+    const accSci = allDegrees.find(d => d.deg.title.includes('Accounting Science'));
+    if (accSci) return { handled: true, source: 'FCAL Accounting Department 2026', text: formatSpecificDegreeResponse(accSci.deg, accSci.faculty) };
+  }
+
+  if (lowerMsg.includes('social work') || lowerMsg.includes('bsw')) {
+    const swk = allDegrees.find(d => d.deg.title.includes('Social Work'));
+    if (swk) return { handled: true, source: 'HSS Social Work Department 2026', text: formatSpecificDegreeResponse(swk.deg, swk.faculty) };
+  }
+
+  if (lowerMsg.includes('nursing') || lowerMsg.includes('nursing science')) {
+    const nursing = allDegrees.find(d => d.deg.title.includes('Nursing'));
+    if (nursing) return { handled: true, source: 'SAE Nursing Department 2026', text: formatSpecificDegreeResponse(nursing.deg, nursing.faculty) };
+  }
+
+  if (lowerMsg.includes('computer science')) {
+    const cs = allDegrees.find(d => d.deg.title.includes('Computer Science'));
+    if (cs) return { handled: true, source: 'SAE Computer Science Department 2026', text: formatSpecificDegreeResponse(cs.deg, cs.faculty) };
+  }
+
+  if (lowerMsg.includes('badmin') || lowerMsg.includes('public administration degree')) {
+    const badmin = allDegrees.find(d => d.deg.title.includes('Public Administration'));
+    if (badmin) return { handled: true, source: 'FCAL Public Administration Department 2026', text: formatSpecificDegreeResponse(badmin.deg, badmin.faculty) };
   }
 
   return null;

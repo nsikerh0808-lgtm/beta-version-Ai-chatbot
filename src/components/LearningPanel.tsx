@@ -158,7 +158,7 @@ export const LearningPanel: React.FC<LearningPanelProps> = ({
               <span>Accuracy Benchmark</span>
             </div>
             <div className="text-2xl sm:text-3xl font-black">98.4%</div>
-            <div className="text-[11px] text-indigo-200">Grounded in UNIZULU 2025 Calendar</div>
+            <div className="text-[11px] text-indigo-200">Grounded in UNIZULU 2026 Calendar</div>
           </div>
         </div>
 
